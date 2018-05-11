@@ -12,8 +12,6 @@ include('login/verifica_login.php');
 // o formulário de login
 include('login/redirect.php');
 
-
-
 ?>
 
 Olá <b><?php echo $_SESSION['nome_usuario']

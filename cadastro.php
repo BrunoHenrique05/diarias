@@ -1,6 +1,21 @@
+
+
 <?php
 // Inclui o arquivo de configuração
-include('../login/config.php');
+include('login/config.php');
+
+// Inclui o arquivo de verificação de login
+include('login/verifica_login.php');
+
+
+// Se não for permitido acesso nenhum ao arquivo
+// Inclua o trecho abaixo, ele redireciona o usuário para 
+// o formulário de login
+include('login/redirect.php');
+
+
+// Inclui o arquivo de configuração
+
 
 // Variavél para preencher o erro (se existir)
 $erro = false;
@@ -12,7 +27,7 @@ if ( isset( $_GET['del'] ) ) {
 	$pdo_insere->execute( array( (int)$_GET['del'] ) );
 	
 	// Redireciona para o index.php
-	header('location: index.php');
+	header('location: cadastro.php');
 }
 
 // Verifica se algo foi postado para publicar ou editar
@@ -102,7 +117,7 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 	}
 
 	li a:hover:not(.active) {
-		background-color: #111;
+		background-color:  #4CAF50;
 	}
 
 	.active {
@@ -126,14 +141,18 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		
 	
 		
-		<div align="center"><img style="height: 140px;  padding-right: 30px;" src="logo.png"></div>
 		
-	
 		
-	<ul>
-		<li style="float:right"><a href="../login.php">Login</a></li>
+		<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
 		
-	</ul>
+ <?php 
+    $nivel = $_SESSION['atuacoes'];
+    if($nivel == 'administrativo' || $nivel == 'diretor' ){
+	include('menuAdm.php');
+    }else{
+    include('menu.php');
+	}
+    ?>
 	<!--FIM MENU-->
 
 				

@@ -58,7 +58,7 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 	}
 
 	li a:hover:not(.active) {
-		background-color: #111;
+		background-color:  #4CAF50;
 	}
 
 	.active {
@@ -88,14 +88,15 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 <body>
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
 	
-	<ul>
-		<li><a  href="index.php">Home</a></li>
-		<li><a class="active" href="formDiaria.php">Formulário de Solicitação de Diárias</a></li>
-		<li><a href="aprovacao.php">Aprovação</a></li>
-		<li><a href="relatorio.php">Relatórios</a></li>
-		<li style="float:right" ><a href="login/sair.php">Sair</a></li>
-	</ul>
-
+    <?php 
+    $nivel = $_SESSION['atuacoes'];
+    if($nivel == 'administrativo' || $nivel == 'diretor' ){
+	include('menuAdm.php');
+    }else{
+    include('menu.php');
+	}
+    ?>
+	
 	<form method="POST" action="processa_cad_viagens.php">
 
         

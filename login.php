@@ -38,17 +38,23 @@ session_start();
 
 
 
+   <style>
 
 
+   body{
+
+    background-color: white;
+   }
 
 
+  </style>
 
 
   </head>
 
 
 
-		<body bgcolor="#000000">
+		<body>
   		<div>
  			<div align="center"><img style="height: 140px;  padding-right: 30px;" src="imagens/logo.png"></div>
 		<br><br>
@@ -66,9 +72,7 @@ session_start();
        <input size="150" type="password" name="senha"   class="form-control" placeholder="Senha" required>
 	
      
-        	</div>			<div>
-					<a href="cria-usuarios/">Cadastrar Usuario</a>
-					</div>
+        	</div>		
 				
 				
 				<?php if ( ! empty( $_SESSION['login_erro'] ) ) :?>
@@ -78,7 +82,7 @@ session_start();
 					
 				<?php endif; ?>
 
-				<br><br><br>
+				<br>
 				<div align="right">
 					<button style="width: 70px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Entrar">Entrar</button>
 				</div>

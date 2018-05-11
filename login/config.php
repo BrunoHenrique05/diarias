@@ -12,6 +12,7 @@ session_start();
 
 // Variável que verifica se o usuário está logado
 if ( ! isset( $_SESSION['logado'] ) ) {
+	
     $_SESSION['logado'] = false;
 }
 

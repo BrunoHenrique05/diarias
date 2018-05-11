@@ -47,14 +47,14 @@ quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_
 	if ($conn->query($sql) === TRUE) {
 	
 	                      echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/index.php'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/formDiaria.php'>
 					<script type=\"text/javascript\">
 						alert(\"Formulario cadastrado com Sucesso.\");
 					</script>
 				";	
 			}else{
 				echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/TrabalhoAilton/index.php'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/TrabalhoAilton/formDiaria.php'>
 					<script type=\"text/javascript\">
 						alert(\"O Formulario não foi cadastrado com Sucesso.\");
 					</script>
