@@ -99,8 +99,47 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 	<form method="POST" action="processa_cad_viagens.php">
 
         
-		<br><br><br><br>
-		<div class="container">
+	<hr><h1> Relatorios</h1><hr>
+	
+	<h4>Para preencher o relatório de viagem clique <a href="relatorioviagem.html">Aqui</a>.</h4>
+	
+	<p><h3>Mostrar por dia</h3>
+	<p>Data:<input type="date" name="dia"> </p> 
+
+	<p><h3>Mostrar por Mês</h3>
+	<select name="quantidade" >
+			<option value="selecione">Selecione...</option> 
+			<option value="janeiro">Janeiro</option> 
+			<option value="fevereiro">Fevereiro</option>
+			<option value="marco">Março</option>
+			<option value="abril">Abril</option>
+			<option value="maio">Maio</option>
+			<option value="junho">Junho</option>
+			<option value="julho">Julho</option>
+			<option value="agosto">Agosto</option>
+			<option value="setembro">Setembro</option>
+			<option value="outubro">Outubro</option>
+			<option value="novembro">Novembro</option>
+			<option value="dezembro">Dezembro</option>
+		</select>
+	</p>
+
+	<p><h3>Mostrar por Ano</h3>
+	<select name="quantidade" >
+			<option value="selecione">Selecione...</option> 
+			<option value="2015">2015</option> 
+			<option value="2016">2016</option>
+			<option value="2017">2017</option>
+			<option value="2018">2018</option>
+			<option value="2019">2019</option>
+			
+		</select>
+	</p>
+	
+	
+	
+
+	</form>
 
 			
 </form>

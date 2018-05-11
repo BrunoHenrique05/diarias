@@ -99,8 +99,16 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 	<form method="POST" action="processa_cad_viagens.php">
 
         
-		<br><br><br><br>
-		<div class="container">
+		<hr><h1> Aprovações</h1><hr>
+	
+	<form action="resposta.php" method="post" align="center">
+		<p> <h3>Faça login para continuar</h3> </p>
+		<p> Nome<input type="text" name="nome" value="" required> </p>
+		<p> Senha<input type="password" name="senha" value="">   </p>
+
+		<p><input type="submit" value="Enviar">
+		<input type="reset" value="Limpar"></p>
+	</form>
 
 			
 </form>
