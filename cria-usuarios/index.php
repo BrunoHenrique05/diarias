@@ -33,8 +33,9 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 
 	
 	// Verifica se as variáveis foram configuradas
-	//if ( empty( $form_usuario ) || empty ( $form_senha ) || empty( $form_nome ) || ( $form_matricula ) || empty( $form_cpf ) || empty( $form_email)|| ( $form_telefone ) || empty( $form_celular ) || empty( $form_atuacoes) ) {
-		//$erro = 'Existem campos em branco.'; }
+	/*
+	if ( empty( $form_usuario ) || empty ( $form_senha ) || empty( $form_nome ) || ( $form_matricula ) || empty( $form_cpf ) || empty( $form_email)|| ( $form_telefone ) || empty( $form_celular ) || empty( $form_atuacoes) ) {
+		$erro = 'Existem campos em branco.'; }*/
 	
 	// Verifica se o usuário existe
 	$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM usuarios WHERE user = ?');

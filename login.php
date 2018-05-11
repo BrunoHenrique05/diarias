@@ -3,6 +3,7 @@
 session_start();
 
 ?>
+
 <!doctype html>
 <html>
  <head>
@@ -76,6 +77,7 @@ session_start();
 						<?php $_SESSION['login_erro'] = ''; ?>
 					
 				<?php endif; ?>
+
 				<br><br><br>
 				<div align="right">
 					<button style="width: 70px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Entrar">Entrar</button>
