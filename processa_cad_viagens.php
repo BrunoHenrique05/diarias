@@ -2,7 +2,7 @@
 	
 	$servidor = "localhost";
 	$usuario = "root";
-	$senha = "alunoiftm";
+	$senha = "";
 	$dbname = "cadastros";
 	//Criar a conexao
 	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);

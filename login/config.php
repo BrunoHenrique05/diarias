@@ -26,7 +26,7 @@ $_SESSION['login_erro'] = false;
 // Variáveis da conexão
 $base_dados  = 'cadastros';
 $usuario_bd  = 'root';
-$senha_bd    = 'alunoiftm';
+$senha_bd    = '';
 $host_db     = 'localhost';
 $charset_db  = 'UTF8';
 $conexao_pdo = null;
