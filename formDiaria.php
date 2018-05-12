@@ -97,7 +97,7 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 	}
     ?>
 	
-	<form method="POST" action="processa_cad_viagens.php">
+	<form method="POST" action="processa_cad_viagens.php" enctype="multipart/form-data">
 
         
 		<br><br><br><br>
@@ -266,7 +266,7 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 				<td><label for="arquivo"><h4><b>Upload de Documento: </b> </h4></label></td>
 				
 		
-				<td><input type="file" name="arquivo" value="arquivo" id="arquivo"></td>
+				<td><input type="file" name="arquivo"></td>
 				</tr>
 				</table>
 			</div>
