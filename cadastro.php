@@ -15,8 +15,12 @@ include('login/redirect.php');
 
 
 // Inclui o arquivo de configuração
+?>
 
+Olá <b><?php echo $_SESSION['nome_usuario']
+?></b>, Você está conectado.
 
+<?php 
 // Variavél para preencher o erro (se existir)
 $erro = false;
 

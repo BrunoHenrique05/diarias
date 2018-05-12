@@ -85,9 +85,6 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 	}
 
 
-
-
-
 </style>
 </head>
 <body>

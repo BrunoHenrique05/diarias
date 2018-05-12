@@ -22,18 +22,18 @@
 	$numeroAgencia = $_POST['numeroAgencia'];
 	$numeroConta = $_POST['numeroConta'];
 	$ufOrigem = $_POST['ufOrigem'];
-        $cidadeOrigem = $_POST['cidadeOrigem'];
+    $cidadeOrigem = $_POST['cidadeOrigem'];
 	$ufDestino = $_POST['ufDestino'];
 	$cidadeDestino = $_POST['cidadeDestino'];
 	$dataSaida = $_POST['dataSaida'];		
 	$dataRetorno = $_POST['dataRetorno'];
 	$quantiadeDiarias = $_POST['quantiadeDiarias'];
-	$qarquivo = $_POST['arquivo'];
+	//$arquivo = $_FILES["file"]["tmp_arquivo"];
 	$justificativa = $_POST['justificativa'];
 	$formaAfastamento = $_POST['formaAfastamento'];
-        $meioTransporte = $_POST['meioTransporte'];
-        $usuarios_user_id = $_SESSION['user_id'];
-
+    $meioTransporte = $_POST['meioTransporte'];
+    $usuarios_user_id = $_SESSION['user_id']; 
+    
 	
 
 		$sql = "INSERT INTO cadastroViagem (tipoFormulario,tipoSolitacao,finalidadeViagem,numeroBanco,numeroAgencia,numeroConta,ufOrigem,cidadeOrigem,ufDestino,cidadeDestino,dataSaida,dataRetorno,
