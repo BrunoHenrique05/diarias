@@ -270,7 +270,9 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 
 		?>
 		</table>
-		
+		<?php
+		include('encerraSessao.php');
+		?>
 		
 	</body>
 </html>

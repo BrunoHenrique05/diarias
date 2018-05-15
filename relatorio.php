@@ -105,7 +105,9 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 
 			
 </form>
-
+<?php
+include('encerraSessao.php');
+?>
 </body>
 </html>
 

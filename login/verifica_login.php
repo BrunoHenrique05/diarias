@@ -47,7 +47,8 @@ if (
 		$_SESSION['email']        = $fetch_usuario['user_email'] ;
 		$_SESSION['telefone']     = $fetch_usuario['user_Telefone'] ;
 		$_SESSION['celular']      = $fetch_usuario['user_celular'] ;
-        $_SESSION['atuacoes']     = $fetch_usuario['user_atuacoes']; 
+        $_SESSION['atuacoes']     = $fetch_usuario['user_atuacoes'];
+        $_SESSION["sessiontime"] = time() + 60;	 
 	        
                
 	} else {

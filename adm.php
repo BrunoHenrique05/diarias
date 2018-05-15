@@ -17,7 +17,6 @@ include('login/redirect.php');
 Olá <b><?php echo $_SESSION['nome_usuario']
 ?></b>, Você está conectado.
 
-
  <!DOCTYPE html>
 <html>
 <head>
@@ -103,6 +102,10 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 
 			
 </form>
+
+<?php
+include('encerraSessao.php');
+?>
 
 </body>
 </html>
