@@ -17,8 +17,9 @@ include('login/redirect.php');
 // Inclui o arquivo de configuração
 ?>
 
-Olá <b><?php echo $_SESSION['nome_usuario']
-?></b>, Você está conectado.
+ Olá <b><?php echo $_SESSION['nome_usuario']
+?>, <b><?php echo $_SESSION['atuacoes']
+?></b> </b>,  você está conectado.
 
 <?php 
 // Variavél para preencher o erro (se existir)
@@ -149,14 +150,21 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		
 		<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
 		
- <?php 
+ 	 <?php 
     $nivel = $_SESSION['atuacoes'];
-    if($nivel == 'administrativo' || $nivel == 'diretor' ){
+    if($nivel == 'administrativo'){
 	include('menuAdm.php');
-    }else{
-    include('menu.php');
-	}
+    }else  if($nivel == 'professor'){
+ 	include('menu.php');
+	 }else  if($nivel == 'diretorEnsino'){
+	 include('diretorEnsino.php');
+	 }else  if($nivel == 'diretorGeral'){
+		include('diretorGeral.php');
+	 }
+
+
     ?>
+    
 	<!--FIM MENU-->
 
 				
@@ -212,7 +220,10 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 						<input class="form-check-input" type="radio" name="form_atuacoes" id="administrativo" value="administrativo"> Administrativo
 					</label>
 					<label style="padding-right: 100px;" class="form-check-label">
-						<input class="form-check-input" type="radio" name="form_atuacoes" id="diretor" value="diretor" > Diretor
+						<input class="form-check-input" type="radio" name="form_atuacoes" id="diretor" value="diretorEnsino" > Diretor de Ensino
+					</label>
+						<label style="padding-right: 100px;" class="form-check-label">
+						<input class="form-check-input" type="radio" name="form_atuacoes" id="diretor" value="diretorGeral" > Diretor Geral
 					</label>
 					<br><br>
 				

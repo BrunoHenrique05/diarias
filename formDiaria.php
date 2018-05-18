@@ -16,8 +16,9 @@ include('login/redirect.php');
 
 ?>
 
-Olá <b><?php echo $_SESSION['nome_usuario']
-?></b>, Você está conectado.
+ Olá <b><?php echo $_SESSION['nome_usuario']
+?>, <b><?php echo $_SESSION['atuacoes']
+?></b> </b>,  você está conectado.
 
  <!DOCTYPE html>
 <html>
@@ -87,13 +88,19 @@ Olá <b><?php echo $_SESSION['nome_usuario']
 <body>
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
 	
-    <?php 
+  	 <?php 
     $nivel = $_SESSION['atuacoes'];
-    if($nivel == 'administrativo' || $nivel == 'diretor' ){
+    if($nivel == 'administrativo'){
 	include('menuAdm.php');
-    }else{
-    include('menu.php');
-	}
+    }else  if($nivel == 'professor'){
+ 	include('menu.php');
+	 }else  if($nivel == 'diretorEnsino'){
+	 include('diretorEnsino.php');
+	 }else  if($nivel == 'diretorGeral'){
+		include('diretorGeral.php');
+	 }
+
+
     ?>
 	
 	<form method="POST" action="processa_cad_viagens.php" enctype="multipart/form-data">
