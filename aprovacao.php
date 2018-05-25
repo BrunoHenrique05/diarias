@@ -88,19 +88,13 @@ include('login/redirect.php');
 </head>
 <body>
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
-	 <?php 
+ <?php 
     $nivel = $_SESSION['atuacoes'];
-    if($nivel == 'administrativo'){
+    if($nivel == 'administrativo' || $nivel == 'diretor' ){
 	include('menuAdm.php');
-    }else  if($nivel == 'professor'){
- 	include('menu.php');
-	 }else  if($nivel == 'diretorEnsino'){
-	 include('diretorEnsino.php');
-	 }else  if($nivel == 'diretorGeral'){
-		include('diretorGeral.php');
-	 }
-
-
+    }else{
+    include('menu.php');
+	}
     ?>
 
 	<form method="POST" action="processa_cad_viagens.php">
@@ -113,8 +107,64 @@ include('login/redirect.php');
 </form>
 
 <?php
-include('encerraSessao.php');
-?>
+$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM usuarios ORDER BY user_id DESC');
+		$pdo_verifica->execute();
+		
+		while( $fetch = $pdo_verifica->fetch() ) {
+			if($fetch['user_id']==9){
+			
+			
+			echo '<h4><b> Nome: </b>' . $fetch['user_name'] . '</h4><hr>';
+			echo '<h4><b> Matricula: </b>' . $fetch['user_matricula'] . '</h4><hr>';
+			echo '<h4><b> Cpf: </b>' . $fetch['user_cpf'] . '</h4><hr>';
+			echo '<h4><b> Email: </b>' . $fetch['user_email'] . '</h4><hr>';
+			echo '<h4><b> telefone: </b>' . $fetch['user_Telefone'] . '</h4><hr>';
+			echo '<h4><b> Celular: </b>' . $fetch['user_celular'] . '</h4><hr>';
+			echo '<h4><b> Atuação: </b>' . $fetch['user_atuacoes'] . '</h4><hr>';
+		
+		
+		}
+		}
+
+
+		$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM cadastroviagem ORDER BY id DESC');
+		$pdo_verifica->execute();
+		
+		while( $fetch = $pdo_verifica->fetch() ) {
+			if($fetch['id']==16){
+			
+			
+			echo '<h4><b> Tipo formulario: </b>' . $fetch['tipoFormulario'] . '</h1><hr>';
+			echo '<h4><b> Tipo de Solicitação: </b>' . $fetch['tipoSolitacao'] . '</h1><hr>';
+			echo '<h4><b> Finalidade da viagem: </b>' . $fetch['finalidadeViagem'] . '</h1><hr>';
+			echo '<h4><b> Numero do banco : </b>' . $fetch['numeroBanco'] . '</h1><hr>';
+			echo '<h4><b> Numero da agencia : </b>' . $fetch['numeroAgencia'] . '</h1><hr>';
+			echo '<h4><b> Numero da conta : </b>' . $fetch['numeroConta'] . '</h1><hr>';
+			echo '<h4><b> Uf de origem : </b>' . $fetch['ufOrigem'] . '</h1><hr>';
+			echo '<h4><b> Cidade de origem : </b>' . $fetch['cidadeOrigem'] . '</h1><hr>';
+			echo '<h4><b> Uf de destino : </b>' . $fetch['ufDestino'] . '</h1><hr>';
+			echo '<h4><b> Cidade de destino : </b>' . $fetch['cidadeDestino'] . '</h1><hr>';
+			echo '<h4><b> Data de saida : </b>' . $fetch['dataSaida'] . '</h1><hr>';
+			echo '<h4><b> Data de retorno : </b>' . $fetch['dataRetorno'] . '</h1><hr>';
+			echo '<h4><b> Quantiade de diarias : </b>' . $fetch['quantiadeDiarias'] . '</h1><hr>';
+			//fatou arquivo
+			echo '<h4><b> Justificativa : </b>' . $fetch['justificativa'] . '</h1><hr>';
+			echo '<h4><b> Forma de afastamento : </b>' . $fetch['formaAfastamento'] . '</h1><hr>';
+			echo '<h4><b> Meio de transporte : </b>' . $fetch['meioTransporte'] . '</h1><hr>';
+		
+	
+		}
+		}
+
+
+
+
+		?>
+		</table>
+
+
+
+
 
 </body>
 </html>
