@@ -1,5 +1,3 @@
-
-
 <?php
 // Inclui o arquivo de configuração
 include('login/config.php');
@@ -21,10 +19,13 @@ include('login/redirect.php');
 ?>, <b><?php echo $_SESSION['atuacoes']
 ?></b> </b>,  você está conectado.
 
-<?php 
+
+
+<?php
+
 // Variavél para preencher o erro (se existir)
 $erro = false;
-
+$r = false;
 // Apaga usuários
 if ( isset( $_GET['del'] ) ) {
 	// Delete de cara (sem confirmação)
@@ -69,17 +70,24 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 	if ( ! $erro ) {
 		// Se o usuário existir, atualiza
 		if ( ! empty( $user_id ) ) {
+			/*
 			$pdo_insere = $conexao_pdo->prepare('UPDATE usuarios SET user=?, user_password=?, user_name=?, user_matricula =?, user_cpf =?, user_email =?, user_Telefone =?, user_celular, user_atuacoes =?  WHERE user_id=?');
-			$pdo_insere->execute( array( $form_usuario,  crypt( $form_senha ), $form_nome, $user_id, $form_matricula, $form_cpf, $form_email, $form_telefone, $form_celular, $form_atuacoes ) );
+			$pdo_insere->execute( array( $form_usuario,  crypt( $form_senha ), $form_nome, $user_id, $form_matricula, $form_cpf, $form_email, $form_telefone, $form_celular, $form_atuacoes ) );*/
+			$r = "<span style='color:red;'>Usuario ja existe</span>";
+
 			
 		// Se o usuário não existir, cadastra novo
 		} else {
 			$pdo_insere = $conexao_pdo->prepare('INSERT INTO usuarios (user, user_password, user_name, user_matricula, user_cpf, user_email, user_Telefone, user_celular, user_atuacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
 			$pdo_insere->execute( array( $form_usuario, crypt( $form_senha ), $form_nome, $form_matricula, $form_cpf, $form_email, $form_telefone, $form_celular, $form_atuacoes  ) );
+
+			    
 		}
 	}
 }
 ?>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -184,28 +192,28 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
        
 				
 				<label for="nome">Usuario: </label> 
-				<input type="nome" class="form-control" id="nome" placeholder="Usuario Login" name="form_usuario" required style="width: 570px;" required> 
+				<input type="nome" class="form-control" id="nome" placeholder="Usuario Login" name="form_usuario" required style="width: 750px;" required> 
 				<br>
 				<label for="nome">Senha: </label> 
-				<input type="password" class="form-control" id="senha" placeholder="Senha" name="form_senha" required style="width: 570px;"> 
+				<input type="password" class="form-control" id="senha" placeholder="Senha" name="form_senha" required style="width: 750px;"> 
 				<br>
 				<label for="nome">Nome: </label> 
-				<input type="nome" class="form-control" id="nome" placeholder="Nome Completo" name="form_nome" required style="width: 570px;"> 
+				<input type="nome" class="form-control" id="nome" placeholder="Nome Completo" name="form_nome" required style="width: 750px;"> 
 				<br>
 				<label for="matricula">Matrícula: </label> 
-				<input type="text" class="form-control" id="matricula" placeholder="Nº da Matricula" name="form_matricula"required style="width: 570px;" align="right"> 
+				<input type="text" class="form-control" id="matricula" placeholder="Nº da Matricula" name="form_matricula"required style="width: 750px;" align="right"> 
 				<br>
 				<label for="cpf">CPF: </label>
-				<input type="text" class="form-control" id="cpf" placeholder="CPF" name="form_cpf" required style="width: 570px;">
+				<input type="text" class="form-control" id="cpf" placeholder="CPF" name="form_cpf" required style="width: 750px;">
 				<br>
 				<label for="email">Email: </label>
-				<input type="text" class="form-control" id="email" placeholder="Email"  name="form_email"  required style="width: 570px;">
+				<input type="text" class="form-control" id="email" placeholder="Email"  name="form_email"  required style="width: 750px;">
 				<br>
 				<label for="telefone">Telefone: </label>
-				<input type="text" class="form-control" id="telefone" placeholder="Telefone" name="form_telefone"  required style="width: 570px;">
+				<input type="text" class="form-control" id="telefone" placeholder="Telefone" name="form_telefone"  required style="width: 750px;">
 				<br>
 				<label for="celular">Celular: </label>
-				<input type="text" class="form-control" id="celular" placeholder="Celular" name="form_celular"required style="width: 570px;">
+				<input type="text" class="form-control" id="celular" placeholder="Celular" name="form_celular"required style="width: 750px;">
 				<br>
 
 				<!--*********************************************************************************************************************-->
@@ -233,22 +241,31 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 
 				
 				<?php if ( ! empty ( $erro ) ) :?>
+
+
 					
 						 style="color: red;"><?php echo $erro;?>
 					
 				<?php endif; ?>
+
+				<?php  
+				if ( ! empty ( $r ) ):?>
+   				<?php echo $r;?>
+				<?php endif; ?>
 				
-				<div align="left" >
+				<br><br>
+				<div align="left">
 				<button style="width: 90px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
 				<div>
 			</div>
+			
 
 				<?php 
 		// Mostra os usuários
 		$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM usuarios ORDER BY user_id DESC');
 		$pdo_verifica->execute();
 		?>
-		
+		<br>
 		<table border="1" cellpadding="4">
 		<tr>
 			<th>ID</th>
