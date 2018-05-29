@@ -242,13 +242,13 @@ document.getElementById('qtdDiaria').value = d;
 
 			<h4><b>Período do Evento</b></h4>
 			<br>
-			<div class="form-group col-md-3">
-				<label for="saida">Data de Saída </label>
-				<input type="date" class="form-control" id="saida" name="dataSaida" required style="width: 150px;">
-			</div>
 			<div class="form-group col-md-2">
+				<label for="saida">Data de Saída </label>
+				<input type="date" class="form-control" id="saida" name="dataSaida" required style="width: 155px;">
+			</div>
+			<div class="form-group col-md-3">
 				<label for="retorno">Data de Retorno </label>
-				<input onblur="preenche();" type="date"  class="form-control" id="retorno" name="dataRetorno" required>
+				<input onblur="preenche();" type="date"  class="form-control" id="retorno" name="dataRetorno" required style="width: 155px;" >
 			</div>
 	
 
@@ -256,7 +256,7 @@ document.getElementById('qtdDiaria').value = d;
 
 			<div class="form-group col-md-3">
 				<label for="destino">Quantidade de Diárias </label>
-				<input readonly="true" type="text" class="form-control" id="qtdDiaria" placeholder="Ex: 7" name="quantidadeDiarias"  value=""  required style="width: 200px;">
+				<input readonly="true" type="text" class="form-control" id="qtdDiaria" placeholder="Ex: 7" name="quantidadeDiarias" value=""  required style="width: 200px;">
 			</div>
 			<div class="form-group col-md-2">
 				<label  for="horaInicio">De </label>

@@ -14,7 +14,6 @@
 	}
 	
 	session_start();
-
 	$tipoFormulario = $_POST['tipoFormulario'];
 	$tipoSolitacao = $_POST['tipoSolitacao'];
 	$finalidadeViagem = $_POST['finalidadeViagem'];
@@ -27,22 +26,20 @@
 	$cidadeDestino = $_POST['cidadeDestino'];
 	$dataSaida = $_POST['dataSaida'];		
 	$dataRetorno = $_POST['dataRetorno'];
-	$quantiadeDiarias = $_POST['quantiadeDiarias'];
+	$quantiadeDiarias = $_POST['quantidadeDiarias'];
 	$arquivo = $_FILES["arquivo"]["tmp_name"]; 
 	$tamanho = $_FILES["arquivo"]["size"];
 	$justificativa = $_POST['justificativa'];
 	$formaAfastamento = $_POST['formaAfastamento'];
     $meioTransporte = $_POST['meioTransporte'];
     $usuarios_user_id = $_SESSION['user_id']; 
-			$fp = fopen($arquivo, "rb");
- 			$conteudo = fread($fp, $tamanho);
- 			$conteudo = addslashes($conteudo);
- 			fclose($fp); 
-		$sql = "INSERT INTO cadastroViagem (tipoFormulario,tipoSolitacao,finalidadeViagem,numeroBanco,numeroAgencia,numeroConta,ufOrigem,cidadeOrigem,ufDestino,cidadeDestino,dataSaida,dataRetorno,
+	$fp = fopen($arquivo, "rb");
+ 	$conteudo = fread($fp, $tamanho);
+ 	$conteudo = addslashes($conteudo);
+ 	fclose($fp); 
+	$sql = "INSERT INTO cadastroViagem (tipoFormulario,tipoSolitacao,finalidadeViagem,numeroBanco,numeroAgencia,numeroConta,ufOrigem,cidadeOrigem,ufDestino,cidadeDestino,dataSaida,dataRetorno,
 quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_user_id)
 			VALUES ('$tipoFormulario','$tipoSolitacao','$finalidadeViagem','$numeroBanco','$numeroAgencia','$numeroConta','$ufOrigem','$cidadeOrigem','$ufDestino','$cidadeDestino','$dataSaida','$dataRetorno','$quantiadeDiarias','$conteudo','$justificativa','$formaAfastamento','$meioTransporte','$usuarios_user_id')";
-
-
 	
 	if ($conn->query($sql) === TRUE) {
 	
@@ -60,9 +57,7 @@ quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_
 					</script>
 				";	
 			}
-
 			mysqli_close($conn);
 	
 	
 ?>
-
