@@ -123,16 +123,16 @@ $c=0;
 				
 			$c=1;
 			//echo '<h4><b> id: </b>' . $fetch['usuarios_user_id'] . '</h1><hr>';
-			if($fetch['cidadeDestino']==0){
+			if($fetch['status']==0){
 				echo '';
-				echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b color: #FFFFFF;> viagem recusada por motivo: '. $fetch['recusa']. ' </b></h1>';
-			}else if($fetch['cidadeDestino']==1){	
+				echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b >  viagem recusada por motivo: '. $fetch['recusa']. ' </b></h1>';
+			}else if($fetch['status']==1){	
 			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem em analise </b></h1>';
-			}else if($fetch['cidadeDestino']==2){	
+			}else if($fetch['status']==2){	
 			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo diretor de ensino </b></h1>';
-			}else if($fetch['cidadeDestino']==3){	
+			}else if($fetch['status']==3){	
 			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo diretor geral </b></h1>';
-		}else if($fetch['cidadeDestino']==4){	
+		}else if($fetch['status']==4){	
 			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo rh </b></h1>';
 
 			$b=$fetch['id'];
