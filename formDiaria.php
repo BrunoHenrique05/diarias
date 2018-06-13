@@ -79,11 +79,17 @@ include('login/redirect.php');
 	
 	}
 
-
-
-
-
 </style>
+<script type="text/javascript">
+function preenche(){
+var dataInicio = new Date(document.getElementById("saida").value);
+var dataFim = new Date(document.getElementById("retorno").value);
+var c = Math.abs( dataFim.getTime() - dataInicio.getTime());
+var d = Math.ceil(c / (1000 * 3600 * 24)); 
+document.getElementById('qtdDiaria').value = d;
+}
+</script>
+
 </head>
 <body>
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
@@ -113,7 +119,7 @@ include('login/redirect.php');
 			<br>
 				
 			
-				<label readonly="true" for="matricula">Nome: </label> 
+				<label  for="matricula">Nome: </label> 
 			<input readonly="true" type="nome" class="form-control" id="nome"  value="<?php echo $_SESSION['nome_usuario']; ?>" style="padding-right : 230px;" required style="width: 570px;"> 
 				<br>
 				<label readonly="true" for="matricula">Matrícula: </label> 
@@ -242,7 +248,7 @@ include('login/redirect.php');
 			</div>
 			<div class="form-group col-md-2">
 				<label for="retorno">Data de Retorno </label>
-				<input type="date" class="form-control" id="retorno" name="dataRetorno" required>
+				<input onblur="preenche();" type="date"  class="form-control" id="retorno" name="dataRetorno" required>
 			</div>
 	
 
@@ -250,7 +256,7 @@ include('login/redirect.php');
 
 			<div class="form-group col-md-3">
 				<label for="destino">Quantidade de Diárias </label>
-				<input type="text" class="form-control" id="qtdDiaria" placeholder="Ex: 7" name="quantiadeDiarias" required style="width: 200px;">
+				<input readonly="true" type="text" class="form-control" id="qtdDiaria" placeholder="Ex: 7" name="quantidadeDiarias"  value=""  required style="width: 200px;">
 			</div>
 			<div class="form-group col-md-2">
 				<label  for="horaInicio">De </label>
