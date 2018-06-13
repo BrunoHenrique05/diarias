@@ -17,15 +17,17 @@
 	
 	$i = $_POST['r'];
 	$g=$_SESSION['b'];
+	$s=$_SESSION['l'];
 $z = $_POST['justificativa'];
 	if($i==1){
 $sql  = "UPDATE cadastroviagem SET recusa='$z' WHERE id = '$g'";
+	$sql  = "UPDATE cadastroviagem SET status=0 WHERE id =  '$g'";
 if ($conn->query($sql) === TRUE) {
 	
 	                      echo "
 					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/aprovacao.php'>
 					<script type=\"text/javascript\">
-						alert(\"Formulario cadastrado com Sucesso.\");
+						alert(\"Formulario recusado com Sucesso.\");
 					</script>
 				";	
 			}else{
@@ -42,9 +44,9 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-		 
+		 $s=$s+1;
 		
-	$sql  = "UPDATE cadastroviagem SET status=2 WHERE id =  '$g'";
+	$sql  = "UPDATE cadastroviagem SET status='$s' WHERE id =  '$g'";
 
 	
 	if ($conn->query($sql) === TRUE) {
@@ -52,7 +54,7 @@ if ($conn->query($sql) === TRUE) {
 	                      echo "
 					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/aprovacao.php'>
 					<script type=\"text/javascript\">
-						alert(\"Formulario cadastrado com Sucesso.\");
+						alert(\"Formulario aceito com Sucesso.\");
 					</script>
 				";	
 			}else{

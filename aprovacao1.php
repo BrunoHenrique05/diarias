@@ -90,11 +90,19 @@ include('login/redirect.php');
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
  <?php 
     $nivel = $_SESSION['atuacoes'];
-    if($nivel == 'administrativo' || $nivel == 'diretor' ){
+    if($nivel == 'administrativo'){
 	include('menuAdm.php');
-    }else{
-    include('menu.php');
-	}
+	$_SESSION['l']=3;
+    }else  if($nivel == 'professor'){
+ 	include('menu.php');
+ 	$_SESSION['l']=0;
+	 }else  if($nivel == 'diretorEnsino'){
+	 include('diretorEnsino.php');
+	 $_SESSION['l']=1;
+	 }else  if($nivel == 'diretorGeral'){
+		include('diretorGeral.php');
+		$_SESSION['l']=2;
+	 }
     ?>
 
 

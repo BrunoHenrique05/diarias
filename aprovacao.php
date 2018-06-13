@@ -89,19 +89,21 @@ include('login/redirect.php');
 <body>
 		<form method="POST" action="aprovacao1.php">
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
-	 <?php 
-    $nivel = $_SESSION['atuacoes'];
+ <?php 
+     $nivel = $_SESSION['atuacoes'];
     if($nivel == 'administrativo'){
 	include('menuAdm.php');
+	$_SESSION['l']=3;
     }else  if($nivel == 'professor'){
  	include('menu.php');
+ 	$_SESSION['l']=0;
 	 }else  if($nivel == 'diretorEnsino'){
 	 include('diretorEnsino.php');
+	 $_SESSION['l']=1;
 	 }else  if($nivel == 'diretorGeral'){
 		include('diretorGeral.php');
+		$_SESSION['l']=2;
 	 }
-
-
     ?>
 
 
@@ -112,14 +114,13 @@ include('login/redirect.php');
 
 
 <?php
-<<<<<<< HEAD
 $c=0;
 	$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM cadastroviagem ORDER BY id DESC');
 		$pdo_verifica->execute();
 		
 	while( $fetch = $pdo_verifica->fetch() ) {
-			if($fetch['status']==1){
-			
+			if($fetch['status']==$_SESSION['l']){
+				
 			$c=1;
 			//echo '<h4><b> id: </b>' . $fetch['usuarios_user_id'] . '</h1><hr>';
 
@@ -150,10 +151,6 @@ $c=0;
 
 
 
-=======
-include('encerraSessao.php');
-?>
->>>>>>> fb918672c8cb9dbe39ccdacb0067d18bf12de2ad
 
 
 ?>

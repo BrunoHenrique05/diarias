@@ -95,12 +95,16 @@ include('login/redirect.php');
     $nivel = $_SESSION['atuacoes'];
     if($nivel == 'administrativo'){
 	include('menuAdm.php');
+	$_SESSION['l']=3;
     }else  if($nivel == 'professor'){
  	include('menu.php');
+ 	$_SESSION['l']=0;
 	 }else  if($nivel == 'diretorEnsino'){
 	 include('diretorEnsino.php');
+	 $_SESSION['l']=1;
 	 }else  if($nivel == 'diretorGeral'){
 		include('diretorGeral.php');
+		$_SESSION['l']=2;
 	 }
 
 
@@ -109,8 +113,56 @@ include('login/redirect.php');
 	<form method="POST" action="processa_cad_viagens.php">
 
         
-		<br><br><br><br>
-		<div class="container">
+		<?php
+$c=0;
+	$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM cadastroviagem ORDER BY id DESC');
+		$pdo_verifica->execute();
+		
+	while( $fetch = $pdo_verifica->fetch() ) {
+			if($fetch['usuarios_user_id']==$_SESSION['user_id']){
+				
+			$c=1;
+			//echo '<h4><b> id: </b>' . $fetch['usuarios_user_id'] . '</h1><hr>';
+			if($fetch['cidadeDestino']==0){
+				echo '';
+				echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b color: #FFFFFF;> viagem recusada por motivo: '. $fetch['recusa']. ' </b></h1>';
+			}else if($fetch['cidadeDestino']==1){	
+			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem em analise </b></h1>';
+			}else if($fetch['cidadeDestino']==2){	
+			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo diretor de ensino </b></h1>';
+			}else if($fetch['cidadeDestino']==3){	
+			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo diretor geral </b></h1>';
+		}else if($fetch['cidadeDestino']==4){	
+			echo  '<h4>   <b> Data de saida :</b> ' . $fetch['dataSaida'] . ' <b>Data de retorno :</b> ' . $fetch['dataRetorno']. '<b> Cidade de destino : </b>' . $fetch['cidadeDestino'] .'<b> viagem aceita pelo rh </b></h1>';
+
+			$b=$fetch['id'];
+
+			$_SESSION['a']=$fetch['usuarios_user_id'];
+			$_SESSION['b']=$fetch['id'];
+			//echo '<h4><b> Data de saida : </b>' . $fetch['dataSaida'] . '</h1><hr>';
+			//echo '<h4><b> Data de retorno : </b>' . $fetch['dataRetorno'] . '</h1><hr>';
+
+			 $a=$fetch['usuarios_user_id'];
+		}
+	
+		}
+		}
+		if ($c==1) {
+		
+		}else{
+	
+		}
+
+
+
+
+
+
+
+
+
+
+?>
 
 			
 </form>

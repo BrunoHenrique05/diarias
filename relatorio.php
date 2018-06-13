@@ -93,11 +93,14 @@ include('login/redirect.php');
     $nivel = $_SESSION['atuacoes'];
     if($nivel == 'administrativo'){
 	include('menuAdm.php');
+	 $_SESSION['l']=4;
     }else  if($nivel == 'professor'){
  	include('menu.php');
 	 }else  if($nivel == 'diretorEnsino'){
 	 include('diretorEnsino.php');
+	  $_SESSION['l']=1;
 	 }else  if($nivel == 'diretorGeral'){
+	 	$_SESSION['l']=2;
 		include('diretorGeral.php');
 	 }
 
