@@ -12,8 +12,10 @@
 	}else{
 		//echo "Conexao realizada com sucesso";
 	}
+	//$i = [$_POST='botao'];
 	
 	session_start();
+	$a=$_SESSION['j'];
 
 	$tipoFormulario = utf8_decode($_POST['tipoFormulario']);
 	$tipoSolitacao = utf8_decode($_POST['tipoSolitacao']);
@@ -34,31 +36,30 @@
 	$formaAfastamento = utf8_decode($_POST['formaAfastamento']);
     $meioTransporte = utf8_decode($_POST['meioTransporte']);
     $usuarios_user_id = $_SESSION['user_id']; 
-    $de = $_SESSION['de'];
-     $ate = $_SESSION['ate'];
 			$fp = fopen($arquivo, "rb");
  			$conteudo = fread($fp, $tamanho);
  			$conteudo = addslashes($conteudo);
- 			fclose($fp); 
-		$sql = "INSERT INTO cadastroViagem (tipoFormulario,tipoSolitacao,finalidadeViagem,numeroBanco,numeroAgencia,numeroConta,ufOrigem,cidadeOrigem,ufDestino,cidadeDestino,dataSaida,dataRetorno,
-quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_user_id,de,ate,status)
-			VALUES ('$tipoFormulario','$tipoSolitacao','$finalidadeViagem','$numeroBanco','$numeroAgencia','$numeroConta','$ufOrigem','$cidadeOrigem','$ufDestino','$cidadeDestino','$dataSaida','$dataRetorno','$quantiadeDiarias','$conteudo','$justificativa','$formaAfastamento','$meioTransporte','$usuarios_user_id','$de','$ate',1)";
+ 			fclose($fp);
+ 			//$sql  = "UPDATE cadastroviagem SET recusa='$z' WHERE id = '$g'"; 
+		$sql = "UPDATE cadastroViagem SET tipoFormulario='$tipoFormulario',tipoSolitacao='$tipoSolitacao',finalidadeViagem='$finalidadeViagem',numeroBanco='$numeroBanco',numeroAgencia='$numeroAgencia',numeroConta='$numeroConta',ufOrigem='$ufOrigem',cidadeOrigem='$cidadeOrigem',ufDestino='$ufDestino',cidadeDestino='$cidadeDestino',dataSaida='$dataSaida',dataRetorno='$dataRetorno',
+quantiadeDiarias='$quantiadeDiarias',arquivo='$conteudo',justificativa='$justificativa',formaAfastamento='$formaAfastamento',meioTransporte='$meioTransporte' WHERE id=$a";	
+//VALUES (,,,,,,,,,,,,,,,,, );
 
 
 	
 	if ($conn->query($sql) === TRUE) {
 	
 	                      echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/formDiaria.php'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;http://localhost/TrabalhoAilton/index.php'>
 					<script type=\"text/javascript\">
-						alert(\"Formulario cadastrado com Sucesso.\");
+						alert(\"Formulario Editado com Sucesso.\");
 					</script>
 				";	
 			}else{
 				echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/TrabalhoAilton/formDiaria.php'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/TrabalhoAilton/index.php'>
 					<script type=\"text/javascript\">
-						alert(\"O Formulario não foi cadastrado com Sucesso.\");
+						alert(\"O Formulario não foi editado\");
 					</script>
 				";	
 			}

@@ -20,6 +20,7 @@ include('login/redirect.php');
 ?>, <b><?php echo $_SESSION['atuacoes']
 ?></b> </b>,  você está conectado.
 
+
  <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +80,10 @@ include('login/redirect.php');
 	
 	}
 
+
+
+
+
 </style>
 <script type="text/javascript">
 function preenche(){
@@ -93,9 +98,8 @@ document.getElementById('qtdDiaria').value = d;
 </head>
 <body>
 	<div align="left"> <img style="height: 140px; padding-right: 30px;" src="imagens/logo.png"></div>
-	
-  	 <?php 
-   $nivel = $_SESSION['atuacoes'];
+ <?php 
+    $nivel = $_SESSION['atuacoes'];
     if($nivel == 'administrativo'){
 	include('menuAdm.php');
 	$_SESSION['l']=3;
@@ -109,11 +113,13 @@ document.getElementById('qtdDiaria').value = d;
 		include('diretorGeral.php');
 		$_SESSION['l']=2;
 	 }
-
-
     ?>
-	
-	<form method="POST" action="processa_cad_viagens.php" enctype="multipart/form-data">
+
+
+  
+		
+		<div class="container">
+			<form method="POST" action="editarViagem.php" enctype="multipart/form-data">
 
         
 		<br><br><br><br>
@@ -144,77 +150,106 @@ document.getElementById('qtdDiaria').value = d;
 				<label for="atuacao">Atuações: </label>
 			<input  readonly="true"type="text" class="form-control" id="celular"  value="<?php echo $_SESSION['atuacoes']; ?>" style="padding-right : 230px;" required style="width: 570px;">
 				<br>
+			
 
+
+<?php
+if(isset ($_POST['botao'])){
+$l=0;
+$r = $_POST['botao'];
+}else {
+	$r = $_POST['botao1'];
+	$l=1;
+}
+$_SESSION['j']=$r;
+
+
+
+
+
+
+		$pdo_verifica = $conexao_pdo->prepare('SELECT * FROM cadastroviagem ORDER BY id DESC');
+		$pdo_verifica->execute();
 		
+		while( $fetch = $pdo_verifica->fetch() ) {
+			if($fetch['id']==$r){
+			
+			
+			
 
 
-		<br><br>
+
+?>
 
 			<h4><b>Tipo de Formulário</b></h4>
 			<br>
+
 			<div class="form-check form-check-inline" align="left" style="padding-left: 67px;">
 				<label style="padding-right : 100px;" class="form-check-label" align="left">
-					<input class="form-check-input" type="radio" name="tipoFormulario" id="inicial" value="inicial"> Inicial
+					<input class="form-check-input" type="radio" <?php echo ($fetch['tipoFormulario'] == "inicial") ? "checked" : null; ?> name="tipoFormulario" id="inicial" value="inicial"> Inicial
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="tipoFormulario" id="prorrogacao" value="prorrogacao"> Prorrogação / Complementação
+					<input class="form-check-input" type="radio" name="tipoFormulario"  <?php echo ($fetch['tipoFormulario'] == "prorrogacao") ? "checked" : null; ?> id="prorrogacao" value="prorrogacao"> Prorrogação / Complementação
 				</label>
 			</div>
 		<br><br>
 
 			<!--**********************************************************************************************************************-->
+
+
 
 			<h4><b>Tipo de Solicitação</b></h4>
 			<br>
 			<div class="form-check form-check-inline" align="left" style="padding-left: 67px;">
 				<label style="padding-right: 100px;" class="form-check-label" align="left">
-					<input class="form-check-input" type="radio" name="tipoSolitacao" id="diaria" value="diaria"> Diária
+					<input class="form-check-input" type="radio" name="tipoSolitacao" id="diaria"<?php echo ($fetch['tipoSolitacao'] == "diaria") ? "checked" : null; ?> value="diaria"> Diária
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="tipoSolitacao" id="passagem" value="passagem"> Passagem
+					<input class="form-check-input" type="radio" name="tipoSolitacao"<?php echo ($fetch['tipoSolitacao'] == "passagem") ? "checked" : null; ?> id="passagem" value="passagem"> Passagem
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="tipoSolitacao"  id="ressarcimento" value="ressarcimento"> Ressarcimento
+					<input class="form-check-input" type="radio"<?php echo ($fetch['tipoSolitacao'] == "ressarcimento") ? "checked" : null; ?> name="tipoSolitacao"  id="ressarcimento" value="ressarcimento"> Ressarcimento
 				</label>
 			</div>
 		<br><br>
 
 
 			<!--**********************************************************************************************************************-->
-
 
 			<h4><b>Finalidade</b></h4>
 			<div class="form-check form-check-inline" align="left" style="padding-left: 67px;">
 				<label style="padding-right: 100px;" class="form-check-label" align="left">
-					<input class="form-check-input" type="radio" name="finalidadeViagem" id="atvGestao" value="atvGestao"> Atividade de Gestão
+					<input class="form-check-input" type="radio" name="finalidadeViagem"<?php echo ($fetch['finalidadeViagem'] == "atvGestao") ? "checked" : null; ?> id="atvGestao" value="atvGestao"> Atividade de Gestão
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="finalidadeViagem" id="capacitacao" value="capacitacao"> Capacitação
+					<input class="form-check-input" type="radio" name="finalidadeViagem"<?php echo ($fetch['finalidadeViagem'] == "capacitacao") ? "checked" : null; ?> id="capacitacao" value="capacitacao"> Capacitação
 				</label>
 			</div>
 		<br><br>
 
 
 			<!--**********************************************************************************************************************-->
+<?php 
 
+echo'
 
 			<h4><b>Dados Bancários</b></h4>
 			<br>
 			<div class="form-group col-md-4">
 				<label for="numBanco">N° Banco: </label>
-				<input type="text" class="form-control" id="numBanco" placeholder="N°do Banco" name="numeroBanco" required>
+				<input type="text" class="form-control" id="numBanco" placeholder="N°do Banco"value='. $fetch['numeroBanco'] .' name="numeroBanco" required>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="numAgencia">Agência: </label>
-				<input type="text" class="form-control" id="numAgencia" placeholder="N° da agência" name="numeroAgencia" required>
+				<input type="text" class="form-control" id="numAgencia"value='. $fetch['numeroAgencia'] .' placeholder="N° da agência" name="numeroAgencia" required>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="numConta">Conta Corrente: </label>
-				<input type="text" class="form-control" id="numConta" placeholder="N° da Conta" name="numeroConta" required>
+				<input type="text" class="form-control" id="numConta"value='. $fetch['numeroConta'] .' placeholder="N° da Conta" name="numeroConta" required>
 			</div>
 
 
@@ -222,22 +257,24 @@ document.getElementById('qtdDiaria').value = d;
 
 
 			<h4><b>Viagem</b></h4>
-			<br>
+
+
+
 			<div class="form-group col-md-4">
 				<label for="origem">Origem </label>
-				<input type="text" class="form-control" id="origem" placeholder="Ex: Ituiutaba" name="cidadeOrigem" required>
+				<input type="text" class="form-control" id="origem" placeholder="Ex: Ituiutaba" value='. $fetch['cidadeOrigem'] .' name="cidadeOrigem" required>
 			</div>
 			<div class="form-group col-md-2">
 				<label for="ufOrigem">UF: </label>
-				<input type="text" class="form-control" id="ufOrigem" placeholder="Ex: MG" name="ufOrigem" required>
+				<input type="text" class="form-control" id="ufOrigem"value='. $fetch['ufOrigem'] .' placeholder="Ex: MG" name="ufOrigem" required>
 			</div>
 			<div class="form-group col-md-4">
 				<label for="destino">Destino </label>
-				<input type="text" class="form-control" id="destino" placeholder="Ex: São Paulo" name="cidadeDestino" required>
+				<input type="text" class="form-control" id="destino" placeholder="Ex: São Paulo"value='. $fetch['cidadeDestino'] .' name="cidadeDestino" required>
 			</div>
 			<div class="form-group col-md-2">
 				<label for="ufDestino">UF: </label>
-				<input type="text" class="form-control" id="ufDestino" placeholder="Ex: SP" name="ufDestino" required>
+				<input type="text" class="form-control" id="ufDestino"value='. $fetch['ufDestino'] .' placeholder="Ex: SP" name="ufDestino" required>
 			</div>
 
 
@@ -248,11 +285,11 @@ document.getElementById('qtdDiaria').value = d;
 			<br>
 			<div class="form-group col-md-3">
 				<label for="saida">Data de Saída </label>
-				<input type="date" class="form-control" id="saida" name="dataSaida" required style="width: 150px;">
+				<input type="date" class="form-control" id="saida" name="dataSaida"value='. $fetch['dataSaida'] .' required style="width: 150px;">
 			</div>
 			<div class="form-group col-md-2">
 				<label for="retorno">Data de Retorno </label>
-				<input onblur="preenche();" type="date"  class="form-control" id="retorno" name="dataRetorno" required>
+				<input onblur="preenche();" type="date"  class="form-control" id="retorno"value='. $fetch['dataRetorno'] .' name="dataRetorno" required>
 			</div>
 	
 
@@ -260,18 +297,20 @@ document.getElementById('qtdDiaria').value = d;
 
 			<div class="form-group col-md-3">
 				<label for="destino">Quantidade de Diárias </label>
-				<input readonly="true" type="text" class="form-control" id="qtdDiaria" placeholder="Ex: 7" name="quantidadeDiarias"  value=""  required style="width: 200px;">
+				<input readonly="true" type="text" class="form-control" id="qtdDiaria" placeholder="" name="quantidadeDiarias"  value= ' .$fetch['quantiadeDiarias'].' required style="width: 200px;">
 			</div>
+
 			<div class="form-group col-md-2">
 				<label  for="horaInicio">De </label>
-				<input type="time" class="form-control" id="horaInicio" name="de"   required>
+				<input type="time" class="form-control" value= ' .$fetch['de'].' id="horaInicio" name="de"   required>
 
 			</div>
 			<div class="form-group col-md-2">
 				<label  for="horaFim">Às </label>
-				<input type="time" class="form-control" id="horaFim" name="ate"  required > <br>
+				<input type="time" class="form-control" id="horaFim" value= ' .$fetch['ate'].' name="ate"  required > <br>
 			</div> 
-
+			';
+?>
 
 			<!--**********************************************************************************************************************-->
 
@@ -292,16 +331,16 @@ document.getElementById('qtdDiaria').value = d;
 
 
 			<h4><b>Forma de Afastamento</b></h4><br>
-			<div class="form-check form-check-inline" align="left" style="padding-left: 67px;">
+			<div class="form-check form-check-inline"value='. $fetch['formaAfastamento'] .' align="left" style="padding-left: 67px;">
 				<label style="padding-right: 100px;" class="form-check-label" align="left">
-					<input class="form-check-input" type="radio" name="formaAfastamento" id="diariaTotal" value="diariaTotal"> Diária Total
+					<input class="form-check-input" type="radio" name="formaAfastamento"<?php echo ($fetch['formaAfastamento'] == "diariaTotal") ? "checked" : null; ?> id="diariaTotal" value="diariaTotal"> Diária Total
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="formaAfastamento" id="diariaMeia" value="diariaMeia"> Diária 50%
+					<input class="form-check-input" type="radio" name="formaAfastamento"<?php echo ($fetch['formaAfastamento'] == "diariaMeia") ? "checked" : null; ?> id="diariaMeia" value="diariaMeia"> Diária 50%
 				</label>
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="formaAfastamento" id="diariaNenhuma" value="diariaNenhuma"> Sem Diária
+					<input class="form-check-input" type="radio" name="formaAfastamento"<?php echo ($fetch['formaAfastamento'] == "diariaNenhuma") ? "checked" : null; ?> id="diariaNenhuma" value="diariaNenhuma"> Sem Diária
 				</label>
 			</div>
 
@@ -312,52 +351,68 @@ document.getElementById('qtdDiaria').value = d;
 			<h4><b>Meio de Transporte</b></h4><br>
 			<div class="form-check form-check-inline" align="left" style="padding-left: 67px;">
 				<label style="padding-right: 100px;" class="form-check-label">
-					<input class="form-check-input" type="radio" name="meioTransporte" id="aereo" value="aereo"> Aéreo
+					<input class="form-check-input" type="radio" name="meioTransporte" id="aereo"<?php echo ($fetch['meioTransporte'] == "aereo") ? "checked" : null; ?> value="aereo"> Aéreo
 				</label>
 
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="meioTransporte" id="rodoviario" value="rodoviario"> Rodoviário
+					<input class="form-check-input" type="radio" name="meioTransporte"<?php echo ($fetch['meioTransporte'] == "rodoviario") ? "checked" : null; ?> id="rodoviario" value="rodoviario"> Rodoviário
 				</label>
 				<label style="padding-right: 100px;" class="form-check-label" >
-					<input class="form-check-input" type="radio" name="meioTransporte" id="oficial" value="oficial"> Veículo Oficial
+					<input class="form-check-input" type="radio" name="meioTransporte"<?php echo ($fetch['meioTransporte'] == "oficial") ? "checked" : null; ?> id="oficial" value="oficial"> Veículo Oficial
 				</label>
-			</div>
+			
 
 
 			<!--**********************************************************************************************************************-->
 
 
-			<h7><i>OBS.: (*) A proposta de viagem com passagem aérea, deve ser realizada com antecedência mínima de 10 (dez) dias conf. exigência do inciso I, do art. 1º da Portaria 505/2009.
+
+			<p><h7><i>OBS.: (*) A proposta de viagem com passagem aérea, deve ser realizada com antecedência mínima de 10 (dez) dias conf. exigência do inciso I, do art. 1º da Portaria 505/2009.
 			</i> </h7> <br>
 
 
 			<!--**********************************************************************************************************************-->
-
+<?php 
+echo '
 
 			    <div class="form-group"><br>
 				
-				<label for="justificativa"> <h4><b>Justificativa da Viagem</b></h4><br></label><br>
-				<textarea tyle="height: 60px; width: 150px;" name="justificativa" class="form-control" id="justificativa" rows="6" style="border-radius: 10px;" onfocus="cleanit(this);refresh_nu()" placeholder= 'JUSTIFICATIVA PELO ENCAMINHAMENTO DO PEDIDO COM MENOS DE 10 DIAS DE ANTECEDÊNCIA DO DESLOCAMENTO(INCISOS I E IX, ART. 2º -PORT. MPOG Nº 98/03 / FERIADO OU FINAL DE SEMANA - § 2º, ART. 5º- DECRETO Nº 5.992/06)'></textarea>
-			     </div>
+				<label for="justificativa">  <h4><b>Justificativa da Viagem</b></h4><br></label><br>
+				<textarea style="height: 140px; width: 1000px;" name="justificativa" value='.$fetch['justificativa'].'  class="form-control" id="justificativa" rows="6" style="border-radius: 10px";>
+				</textarea>
+				</div>
+
+';
 
 
-			<!--**********************************************************************************************************************-->
 
 
-			<div class="botao" id="btnEnvia" align="center" style="padding-top: 70px;">
+
+
+
+		
+	
+		}
+		}
+		if($l==1){
+	echo '
+			 
+	
+	
+				<p><p>
 				
-				<button style="width: 180px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Cadastrar">Enviar</button>
-			</div>
+				<button style="width: 180px; color: #FFFFFF; background-color:red; border: 1px black; " type="submit" class="btn btn-default" name="botao" value=""  >Editar</button>
+			';
+ 
+  
+}
+
+ ?>
+		
 
 
-		</div>
 
-	</div>
 </form>
-
-<?php
-include('encerraSessao.php');
-?>
 
 </body>
 </html>

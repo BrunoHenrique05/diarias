@@ -183,28 +183,47 @@ $pdo_verifica = $conexao_pdo->prepare('SELECT * FROM usuarios ORDER BY user_id D
 
 		?>
 		</table>
- <div class="form-group"><br>
+
+
+				
+		</form>		
+
+      
+	  	<?php 
+	  	if($_SESSION['l']==3){
+	  		echo '		
+  <div class="form-group"><br>
+
+<form method="POST" action="aprovar.php">
+				
+				<label for="numero do "> <h4><b>Numero do .... </h4><br></label><br>
+				<textarea tyle="height: 60px; width: 150px;" name="justificativa" required="" class="form-control" id="justificativa" rows="6" style="border-radius: 10px;" onfocus="cleanit(this);refresh_nu()" placeholder= "numero do ...."></textarea>
+			     </div>
+			     <button style="width: 180px; color: #FFFFFF; background-color:red; border: 1px black; " type="submit" class="btn btn-default" name="r" value="1" >Salvar</button>
+';
+	  	} else{
+echo '		
+  <div class="form-group"><br>
+
+<form method="POST" action="aprovar.php">
+
+	 <div class="form-group"><br>
 				<form method="POST" action="aprovar.php">
 				
 				<button style="width: 180px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Cadastrar">Aprovar</button>
+			</form>			
 			
   </div>
-
-				
-				
-
-      
-			
-  <div class="form-group"><br>
-
-
+  <form method="POST" action="aprovar.php">
 				
 				<label for="justificativa de recusa"> <h4><b>Justificativa de Recusa</b></h4><br></label><br>
-				<textarea tyle="height: 60px; width: 150px;" name="justificativa" class="form-control" id="justificativa" rows="6" style="border-radius: 10px;" onfocus="cleanit(this);refresh_nu()" placeholder= 'Motivo de recusa do formulario, favor especificar o motivo com detalhes.'></textarea>
+				<textarea tyle="height: 60px; width: 150px;" name="justificativa" required="" class="form-control" id="justificativa" rows="6" style="border-radius: 10px;" onfocus="cleanit(this);refresh_nu()" placeholder= "Motivo de recusa do formulario, favor especificar o motivo com detalhes."></textarea>
 			     </div>
 			     <button style="width: 180px; color: #FFFFFF; background-color:red; border: 1px black; " type="submit" class="btn btn-default" name="r" value="1" >Recusar</button>
-
-
+	</form>	
+';
+}
+?>
 </form>
 
 </body>
