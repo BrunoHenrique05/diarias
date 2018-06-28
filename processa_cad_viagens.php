@@ -15,32 +15,34 @@
 	
 	session_start();
 
-	$tipoFormulario = $_POST['tipoFormulario'];
-	$tipoSolitacao = $_POST['tipoSolitacao'];
-	$finalidadeViagem = $_POST['finalidadeViagem'];
-	$numeroBanco = $_POST['numeroBanco'];
-	$numeroAgencia = $_POST['numeroAgencia'];
-	$numeroConta = $_POST['numeroConta'];
-	$ufOrigem = $_POST['ufOrigem'];
-    $cidadeOrigem = $_POST['cidadeOrigem'];
-	$ufDestino = $_POST['ufDestino'];
-	$cidadeDestino = $_POST['cidadeDestino'];
-	$dataSaida = $_POST['dataSaida'];		
-	$dataRetorno = $_POST['dataRetorno'];
-	$quantiadeDiarias = $_POST['quantiadeDiarias'];
+	$tipoFormulario = utf8_decode($_POST['tipoFormulario']);
+	$tipoSolitacao = utf8_decode($_POST['tipoSolitacao']);
+	$finalidadeViagem = utf8_decode($_POST['finalidadeViagem']);
+	$numeroBanco = utf8_decode($_POST['numeroBanco']);
+	$numeroAgencia = utf8_decode($_POST['numeroAgencia']);
+	$numeroConta = utf8_decode($_POST['numeroConta']);
+	$ufOrigem = utf8_decode($_POST['ufOrigem']);
+    $cidadeOrigem = utf8_decode($_POST['cidadeOrigem']);
+	$ufDestino = utf8_decode($_POST['ufDestino']);
+	$cidadeDestino = utf8_decode($_POST['cidadeDestino']);
+	$dataSaida = utf8_decode($_POST['dataSaida']);		
+	$dataRetorno = utf8_decode($_POST['dataRetorno']);
+	$quantiadeDiarias = utf8_decode($_POST['quantidadeDiarias']);
 	$arquivo = $_FILES["arquivo"]["tmp_name"]; 
 	$tamanho = $_FILES["arquivo"]["size"];
-	$justificativa = $_POST['justificativa'];
-	$formaAfastamento = $_POST['formaAfastamento'];
-    $meioTransporte = $_POST['meioTransporte'];
+	$justificativa = utf8_decode($_POST['justificativa']);
+	$formaAfastamento = utf8_decode($_POST['formaAfastamento']);
+    $meioTransporte = utf8_decode($_POST['meioTransporte']);
     $usuarios_user_id = $_SESSION['user_id']; 
+    $de = $_POST['de'];
+     $ate = $_POST['ate'];
 			$fp = fopen($arquivo, "rb");
  			$conteudo = fread($fp, $tamanho);
  			$conteudo = addslashes($conteudo);
  			fclose($fp); 
 		$sql = "INSERT INTO cadastroViagem (tipoFormulario,tipoSolitacao,finalidadeViagem,numeroBanco,numeroAgencia,numeroConta,ufOrigem,cidadeOrigem,ufDestino,cidadeDestino,dataSaida,dataRetorno,
-quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_user_id)
-			VALUES ('$tipoFormulario','$tipoSolitacao','$finalidadeViagem','$numeroBanco','$numeroAgencia','$numeroConta','$ufOrigem','$cidadeOrigem','$ufDestino','$cidadeDestino','$dataSaida','$dataRetorno','$quantiadeDiarias','$conteudo','$justificativa','$formaAfastamento','$meioTransporte','$usuarios_user_id')";
+quantiadeDiarias,arquivo,justificativa,formaAfastamento,meioTransporte,usuarios_user_id,de,ate,status)
+			VALUES ('$tipoFormulario','$tipoSolitacao','$finalidadeViagem','$numeroBanco','$numeroAgencia','$numeroConta','$ufOrigem','$cidadeOrigem','$ufDestino','$cidadeDestino','$dataSaida','$dataRetorno','$quantiadeDiarias','$conteudo','$justificativa','$formaAfastamento','$meioTransporte','$usuarios_user_id','$de','$ate',1)";
 
 
 	

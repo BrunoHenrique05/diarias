@@ -48,13 +48,13 @@ if (
 		$_SESSION['telefone']     = $fetch_usuario['user_Telefone'] ;
 		$_SESSION['celular']      = $fetch_usuario['user_celular'] ;
         $_SESSION['atuacoes']     = $fetch_usuario['user_atuacoes'];
-        $_SESSION["sessiontime"] = time() + 60;	 
+        $_SESSION["sessiontime"]  = time() + 60;	 
 	        
                
 	} else {
 
 		// Continua deslogado
-		$_SESSION['logado']     = false;
+		$_SESSION['logado']  = false;
 		
 		// Preenche o erro para o usuário
 		$_SESSION['login_erro'] = 'Usuário ou senha inválidos';

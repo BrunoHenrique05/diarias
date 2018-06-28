@@ -73,14 +73,16 @@ session_start();
 	
      
         	</div>		
-				
-				
+			<div align="left">
+
 				<?php if ( ! empty( $_SESSION['login_erro'] ) ) :?>
 					
 						<td style="color: red;"><?php echo $_SESSION['login_erro'];?></td>
 						<?php $_SESSION['login_erro'] = ''; ?>
 					
 				<?php endif; ?>
+
+        </div>    
 
 				<br>
 				<div align="right">
