@@ -314,18 +314,19 @@ echo'
 				<input readonly="true" type="time" class="form-control" id="horaFim" value= ' .$fetch['ate'].' name="ate"  required > <br>
 			</div> 
 			';
-?>
-
-			<!--**********************************************************************************************************************-->
 
 
+			
+
+echo'
 			<div class="form-check form-check-inline" align="left">
 				<table>	
 				<tr>
-				<td><label for="arquivo"><h4><b>Upload de Documento: </b> </h4></label></td>
-				
-		
-				<td><input type="file" name="arquivo" value=""></td>
+				<td><label for="arquivo"><h4><b>Upload de Documento:</b></h4></label></td>
+				<br>
+			    <td>
+		          <a href="upload/'.$fetch['arquivo'].'">'.$fetch['arquivo'].'</a>
+				</td>
 				</tr>
 				</table>
 			</div>
@@ -333,6 +334,8 @@ echo'
 
 			<!--**********************************************************************************************************************-->
 
+			';
+?>
 
 			<h4><b>Forma de Afastamento</b></h4><br>
 			<div class="form-check form-check-inline"value='. $fetch['formaAfastamento'] .' align="left" style="padding-left: 67px;">
