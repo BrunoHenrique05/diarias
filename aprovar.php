@@ -19,7 +19,7 @@
 	$g=$_SESSION['b'];
 	$s=$_SESSION['l'];
 $z = $_POST['justificativa'];
-if($s=3){
+if($s==3){
 	$sql  = "UPDATE cadastroviagem SET numero='$z', status=4 WHERE id =  '$g'";
 if ($conn->query($sql) === TRUE) {
 	
