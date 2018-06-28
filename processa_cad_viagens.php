@@ -34,8 +34,8 @@
 	$formaAfastamento = utf8_decode($_POST['formaAfastamento']);
     $meioTransporte = utf8_decode($_POST['meioTransporte']);
     $usuarios_user_id = $_SESSION['user_id']; 
-    $de = $_SESSION['de'];
-     $ate = $_SESSION['ate'];
+    $de = $_POST['de'];
+     $ate = $_POST['ate'];
 			$fp = fopen($arquivo, "rb");
  			$conteudo = fread($fp, $tamanho);
  			$conteudo = addslashes($conteudo);

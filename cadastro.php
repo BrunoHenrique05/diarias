@@ -258,7 +258,8 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 				<button style="width: 90px; color: #FFFFFF; background-color:#4CAF50; border: 1px black; " type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
 				<div>
 			</div>
-			
+			</div>
+		</form>
 
 				<?php 
 		// Mostra os usuários
@@ -268,32 +269,38 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		<br>
 		<table border="1" cellpadding="4">
 		<tr>
-			<th>ID</th>
-			<th>Nome</th>
-			<th>Usuário</th>
-			<th>Senha Criptografada</th>
-		        <th>Matricula</th>
-			<th>CPF</th>
-			<th>E-mail</th>
-			<th>Telefone</th>
-			<th>Celular</th>
-                        <th>Atuações</th>
+			
+			<th>Nome </th>
+			<th>Usuário </th>
+			
+		        <th>Matricula </th>
+			<th>CPF </th>
+			<th>E-mail </th>
+			<th> Telefone </th>
+			<th> Celular </th>
+                        <th>Atuações </th>
 		</tr>
+		<form method="POST" action="editarUsuario.php">
+			<h4><b>  Servidores Cadastrados <b></h4>
 		<?php
+	
+		
+
 		while( $fetch = $pdo_verifica->fetch() ) {
 			echo '<tr>';
-			echo '<td>' . $fetch['user_id'] . '</td>';
-			echo '<td>' . $fetch['user_name'] . '</td>';
+			
+			
+
+						echo '<td>' . $fetch['user_name'] . '</td>';
 			echo '<td>' . $fetch['user'] . '</td>';
-			echo '<td>' . $fetch['user_password'] . '</td>';
+		
 			echo '<td>' . $fetch['user_matricula'] . '</td>';
 			echo '<td>' . $fetch['user_cpf'] . '</td>';
 			echo '<td>' . $fetch['user_email'] . '</td>';
 			echo '<td>' . $fetch['user_Telefone'] . '</td>';
 			echo '<td>' . $fetch['user_celular'] . '</td>';
 			echo '<td>' . $fetch['user_atuacoes'] . '</td>';
-			echo '<td> <a style="color:red;" href="?del=' . $fetch['user_id'] . '">Apagar</a> </td>';
-			echo '</tr>';
+			echo '<td> <button style="width: 60px; color: #FFFFFF; background-color:red; border: 1px black; " type="submit" class="btn btn-default" name="botao" value='.$fetch['user_id'].'  >Editar</button> </td>';
 		}
 
 		?>
@@ -301,6 +308,6 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		<?php
 		include('encerraSessao.php');
 		?>
-		
+		</form>
 	</body>
 </html>
