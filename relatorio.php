@@ -24,7 +24,7 @@ include('login/redirect.php');
  <!DOCTYPE html>
 <html>
 <head>
-	<title> Relatorios </title>
+	<title> Solicitação de Diárias </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -93,14 +93,11 @@ include('login/redirect.php');
     $nivel = $_SESSION['atuacoes'];
     if($nivel == 'administrativo'){
 	include('menuAdm.php');
-	 $_SESSION['l']=4;
     }else  if($nivel == 'professor'){
  	include('menu.php');
 	 }else  if($nivel == 'diretorEnsino'){
 	 include('diretorEnsino.php');
-	  $_SESSION['l']=1;
 	 }else  if($nivel == 'diretorGeral'){
-	 	$_SESSION['l']=2;
 		include('diretorGeral.php');
 	 }
 
