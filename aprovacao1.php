@@ -2,17 +2,21 @@
 <?php
 // Inclui o arquivo de configuração
 include('login/config.php');
-
 // Inclui o arquivo de verificação de login
 include('login/verifica_login.php');
-
-
 // Se não for permitido acesso nenhum ao arquivo
 // Inclua o trecho abaixo, ele redireciona o usuário para 
 // o formulário de login
+
+
 include('login/redirect.php');
 
+$a = $_POST["r"];
+if($a != 1){
+header('location: ' . dirname( $_SERVER['PHP_SELF'] ) . '/aprovacao.php');
+}else{
 
+}
 
 ?>
 
@@ -314,18 +318,19 @@ echo'
 				<input readonly="true" type="time" class="form-control" id="horaFim" value= ' .$fetch['ate'].' name="ate"  required > <br>
 			</div> 
 			';
-?>
-
-			<!--**********************************************************************************************************************-->
 
 
+			
+
+echo'
 			<div class="form-check form-check-inline" align="left">
 				<table>	
 				<tr>
-				<td><label for="arquivo"><h4><b>Upload de Documento: </b> </h4></label></td>
-				
-		
-				<td><input type="file" name="arquivo" value=""></td>
+				<td><label for="arquivo"><h4><b>Upload de Documento:</b></h4></label></td>
+				<br>
+			    <td>
+		          <a href="upload/'.$fetch['arquivo'].'" download>'.$fetch['arquivo'].'</a>
+				</td>
 				</tr>
 				</table>
 			</div>
@@ -333,6 +338,8 @@ echo'
 
 			<!--**********************************************************************************************************************-->
 
+			';
+?>
 
 			<h4><b>Forma de Afastamento</b></h4><br>
 			<div class="form-check form-check-inline"value='. $fetch['formaAfastamento'] .' align="left" style="padding-left: 67px;">
